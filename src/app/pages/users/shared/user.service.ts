@@ -10,13 +10,9 @@ import { map, catchError, flatMap } from 'rxjs/operators';
 })
 export class UserService {
 
-  // users: User = new User();
-  // https://randomuser.me/api/?results=50&nat=br,
-
   private apiUrl = 'https://randomuser.me/api/';
 
   constructor(private http: HttpClient) { }
-
 
   getAllUsers(): Observable<any> {
     let query = '?results=5&nat=br';
@@ -34,6 +30,7 @@ export class UserService {
   }
 
   private extractData(data) {
+    console.log(data)
     let users = data.results;
     return users;
   }
