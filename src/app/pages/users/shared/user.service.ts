@@ -15,7 +15,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getAllUsers(): Observable<any> {
-    let query = '?results=5&nat=br';
+    let query = '?results=10&nat=br';
 
     return this.http.get(`${this.apiUrl}${query}`).pipe(
       catchError(this.handleError),
