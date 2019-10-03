@@ -30,7 +30,6 @@ export class UserService {
   }
 
   private extractData(data: any): User {
-    console.log(data)
     let users = data.results;
     return users;
   }
