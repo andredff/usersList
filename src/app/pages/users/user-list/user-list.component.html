@@ -20,7 +20,7 @@
 <table class="table table-hover">
   <thead>
     <tr class="bg-primary text-light">
-      <th>Nome <label (click)="orderByName()">reverse</label> </th>
+      <th>Nome <button class="btn-sm btn-primary" (click)="orderByName()">ordernar</button> </th>
       <th>Email</th>
       <th>Ações</th>
     </tr>
@@ -35,7 +35,8 @@
       </td>
 
       <td>
-        <button (click)="showUser(user)" class="btn btn-outline-info btn-sm mr-2">Detalhes</button>
+        <!-- <button (click)="goToDetails(user)" class="btn btn-outline-info btn-sm mr-2">Detalhes</button> -->
+        <button (click)="goToDetalhesByState(user)" class="btn btn-outline-info btn-sm mr-2">Detalhes</button>
       </td>
     </tr>
   </tbody>

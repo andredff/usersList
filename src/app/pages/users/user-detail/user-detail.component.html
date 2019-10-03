@@ -1,1 +1,45 @@
-<p>user-detail works!</p>
+<nav class="mb-5">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a routerLink="./">Home</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a routerLink="/users">Usuários</a>
+    </li>
+    <li class="breadcrumb-item active">
+      Detalhes
+    </li>
+  </ol>
+</nav>
+
+<div>
+  <button class="btn btn-primary" routerLink="/users">Voltar</button>
+</div>
+
+<div class="container">
+  <div class="card mx-auto" style="min-width: 500px">
+    <div class="profile">
+      <img src="{{user.picture.large}}" class="card-img-top" alt="...">
+    </div>
+    <div class="card-body">
+      <p class="card-text mb-0"> {{ fullname }}</p>
+      <p class="card-text mt-0"> {{ user.email }}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <p class="mb-0">Idade: {{ user.dob.age }}</p>
+        <p class="mt-0">Nascimento: {{ user.dob.date | date }} </p>
+      </li>
+      <li class="list-group-item">
+        <p> Fone: {{ user.phone }} </p>
+      </li>
+      <li class="list-group-item">
+        <p class="mb-1">Endereço:</p>
+        <p class="mb-0 mt-1">{{ street }}</p>
+        <p class="mt-0">{{ user.location.country }}</p>
+      </li>
+    </ul>
+
+  </div>
+
+</div>

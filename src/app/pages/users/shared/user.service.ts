@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from "rxjs";
 
-import { map, catchError, flatMap } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
+import { User } from './User.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,28 +15,25 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getAllUsers(): Observable<any> {
+  getAllUsers(): Observable<User> {
     let query = '?results=10&nat=br';
 
-    return this.http.get(`${this.apiUrl}${query}`).pipe(
+    return this.http.get<User>(`${this.apiUrl}${query}`).pipe(
       catchError(this.handleError),
       map(this.extractData)
     )
   }
 
-
-  private handleError(error: any): Observable<any> {
+  private handleError(error: any): Observable<User> {
     console.log("ERRO NA REQUISIÇÃO =>", error);
     return throwError(error);
   }
 
-  private extractData(data) {
+  private extractData(data: any): User {
     console.log(data)
     let users = data.results;
     return users;
   }
-
-
 
 }
 

@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import sortBy from 'lodash/sortBy';
 
 import { UserService } from '../shared/user.service';
+import { DataService } from './../shared/data.service';
+
+import { Router } from '@angular/router';
+import { User } from '../shared/User.interface';
 
 
 @Component({
@@ -13,7 +17,7 @@ export class UserListComponent implements OnInit {
 
   users: any;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
 
@@ -26,7 +30,7 @@ export class UserListComponent implements OnInit {
       users => {
         this.users = sortBy(users, 'name.first');
       },
-      // error => alert('ERRO')
+      error => alert('Aconteceu um erro imprevisto, tente novamente mais tarde')
     )
   }
 
@@ -34,8 +38,11 @@ export class UserListComponent implements OnInit {
     this.users.reverse();
   }
 
-  showUser(event) {
-    console.log(event);
+  goToDetalhesByState(user: User) {
+    this.dataService.setUser(user);
+    this.router.navigateByUrl('/users/details', {
+      state: { user }
+    })
   }
 
 }
